@@ -26,7 +26,7 @@ import Foundation
 func showUsage() {
     let executable = NSURL(string:CommandLine.arguments[0])?.lastPathComponent ?? "ColladaMorphAdjuster"
     print("Usage:")
-    print("\(executable) collada_file [-o output_file]")
+    print("\(executable) collada_file [-o output_file=out.dae]")
     print("or")
     print("\(executable) -h")
     print("")
