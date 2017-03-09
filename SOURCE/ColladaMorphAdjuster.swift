@@ -64,8 +64,7 @@ open class ColladaMorphAdjuster {
     /// - returns: EXIT_SUCCESS on success or EXIT_FAILURE for any failure.
     ///
     open class func adjust(inputFile : String, outputFile : String)->Int32 {
-        return ColladaMorphAdjuster(inputFile: inputFile,
-                                                          outputFile: outputFile).adjust()
+        return ColladaMorphAdjuster(inputFile: inputFile, outputFile: outputFile).adjust()
     }
     
     init(inputFile : String, outputFile : String) {
@@ -123,8 +122,7 @@ open class ColladaMorphAdjuster {
                 controllersAdded += 1
             }
             else {
-                let node = (fixItem.instanceGeometry.parent as? XMLElement)?.id
-                print("Warning: Unable to create instance controller for: \(node ?? "<unknown node>")")
+                print("Warning: Unable to create instance controller for: \(fixItem.libraryController.id ?? "<unknown controller>")")
             }
         }
         fixItems.removeAll() // we shouldn't use this list again.
@@ -195,7 +193,6 @@ open class ColladaMorphAdjuster {
         
         return self.morpherMap[url]
     }
-    
     
     /// Loads an XMLDocument
     ///
