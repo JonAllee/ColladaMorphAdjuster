@@ -204,7 +204,7 @@ open class ColladaMorphAdjuster {
         let url = URL(fileURLWithPath: NSString(string: filename).standardizingPath)
         let options:XMLNode.Options = [.nodeLoadExternalEntitiesNever]
         
-        return try XMLDocument(contentsOf: url, options: Int(options.rawValue))
+        return try XMLDocument(contentsOf: url, options: XMLNode.Options.init(rawValue: options.rawValue))
     }
     
     /// Adds a '#' to the controller's id to create a uri fragment
@@ -217,7 +217,7 @@ open class ColladaMorphAdjuster {
     /// Simplified uri fragment parser. Remove the leading '#'
     func id(fromFragment fragment:String)->String? {
         guard fragment.hasPrefix("#"),
-            fragment.characters.count > 1 else {
+            fragment.count > 1 else {
                 return nil
         }
         return fragment.substring(from: fragment.index(after:fragment.startIndex))
@@ -268,7 +268,7 @@ open class ColladaMorphAdjuster {
         let fileURL = URL(fileURLWithPath: string)
         
         let options:XMLNode.Options = [.nodePrettyPrint]
-        let text = self.xmlDoc.xmlString(withOptions: Int(options.rawValue))
+        let text = self.xmlDoc.xmlString(options: XMLNode.Options.init(rawValue: options.rawValue))
         
         print("Writing \(text.lengthOfBytes(using: .utf8)) bytes to")
         print("\(fileURL.path)\n")
